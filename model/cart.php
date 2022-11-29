@@ -1,11 +1,11 @@
 <?php
-  function insert_bill($iduser,$name, $email,$tel, $address,$pttt,$orderdate,$tongtien){
-    $sql="insert into bill(iduser,nameuser,email,tel,address,pttt,orderdate,total) values('$iduser','$name', '$email','$tel','$address','$pttt','$orderdate','$tongtien')";
+  function insert_bill($idac,$name, $email,$tel, $address,$pttt,$orderdate,$tongtien){
+    $sql="insert into bill(idac,nameuser,email,tel,address,pttt,orderdate,total) values('$idac','$name', '$email','$tel','$address','$pttt','$orderdate','$tongtien')";
     return pdo_execute_lastInsertId($sql);
   }
 
-  function insert_cart($iduser, $idp, $name,$img,$price,$soluong,$thanhtien,$idbill){
-    $sql="insert into cart(iduser,idp,namep,img,price,quantity,thanhtien,idbill) values('$iduser', '$idp', '$name','$img','$price','$soluong','$thanhtien','$idbill')";
+  function insert_cart($idac, $idp, $name,$img,$price,$soluong,$thanhtien,$idbill){
+    $sql="insert into cart(idac,idp,namep,img,price,quantity,thanhtien,idbill) values('$idac', '$idp', '$name','$img','$price','$soluong','$thanhtien','$idbill')";
     pdo_execute($sql);
   }
 
@@ -15,14 +15,14 @@
     return $bill;
 }
 
-function loadall_bill($keyw,$iduser){
+function loadall_mybill($keyw,$idac){
   $sql = "select * from bill where 1";
   if($keyw != ""){
     $sql.=" and idbill like '%".$keyw."%'";
   }
-  if($iduser>0)
+  if($idac>0)
   {
-    $sql.=" AND iduser=".$iduser;
+    $sql.=" AND idac=".$idac;
   }
   $sql.=" order by idbill desc";
   $bill = pdo_query($sql);

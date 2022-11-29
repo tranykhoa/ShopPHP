@@ -1,6 +1,9 @@
 <?php
-function insert_product($namep, $price , $hinh, $info,$idcg){
-    $sql="insert into product(namep,price,img,info,idcg) values('$namep', '$price' , '$hinh', '$info', '$idcg')";
+function insert_product($namep, $price ,$quantity, $hinh, $info,$idcg){
+    if($hinh == ""){
+        $hinh = "no photo";
+    }
+    $sql="insert into product(namep,price,quantity,img,info,idcg) values('$namep', '$price', '$quantity' , '$hinh', '$info', '$idcg')";
     pdo_execute($sql);
 }
 
@@ -24,7 +27,7 @@ function loadall_product($keyw,$idcg){
 
 
 function loadall_product_loadpage($keyw,$idcg,$page){
-    $numberPages = 8;
+    $numberPages = 9;
     $start_limit = ($page - 1)*$numberPages; 
     $sql="select * from product where 1";//where 1 tất là câu này nó đúng
     if($keyw != ""){
@@ -44,11 +47,19 @@ function loadall_product_home(){
     return $listproduct;
 }
 
+function loadall_product_top_view(){
+    $sql="select * from product where 1 order by view desc limit 0,8";
+    $listproduct = pdo_query($sql);
+    return $listproduct;
+}
+
 function loadone_product($idp){
     $sql = "select * from product where idp=".$idp;
     $oneproduct = pdo_query_one($sql);
     return $oneproduct;
 }
+
+
 
 function rowsCount($idcg){
     $sql="select * from product where 1";
@@ -58,18 +69,18 @@ function rowsCount($idcg){
     $num = pdo_rowCount($sql);
     return $num;
 }
-function update_product($idp,$namep, $price , $img, $info ,$idcg){
+function update_product($idp,$namep, $price ,$quantity ,$img, $info ,$idcg){
     if($img!="")
-        $sql="update product set namep='".$namep."', price='".$price."', img='".$img."', info='".$info."', idcg='".$idcg."' where idp=".$idp;
+        $sql="update product set namep='".$namep."', price='".$price."', quantity='".$quantity."' ,img='".$img."', info='".$info."', idcg='".$idcg."' where idp=".$idp;
     else
-        $sql="update product set namep='".$namep."', price='".$price."', info='".$info."', idcg='".$idcg."' where idp=".$idp;
+        $sql="update product set namep='".$namep."', price='".$price."', quantity='".$quantity."', info='".$info."', idcg='".$idcg."' where idp=".$idp;
     pdo_execute($sql);
 }
 
 
 
-function load_similar_products($idp,$idcg){
-    $sql = "select * from product where idcg=".$idcg." and idp <>'".$idp."' order by idp desc limit 0,4";
+function load_products_same($idp){
+    $sql = "select * from product where idp <> ".$idp;
     $listproduct = pdo_query($sql);
     return $listproduct;
 }

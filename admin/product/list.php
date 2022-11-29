@@ -1,108 +1,107 @@
-<!-- MAIN -->
-<main>
-			<div class="head-title">
-				<div class="left">
-					<h1>Quản lý Shop</h1>
-					<ul class="breadcrumb">
-						<li>
-							<a href="#">Quản lý shop</a>
-						</li>
-						<li><i class='bx bx-chevron-right' ></i></li>
-						<li>
-							<a class="active" href="#">Product</a>
-						</li>
-					</ul>
-				</div>
-				<a href="#" class="btn-download">
-					<i class='bx bxs-cloud-download' ></i>
-					<span class="text">Download PDF</span>
-				</a>
+<section class="content">
+	<div class="container-fluid">
+		<div class="row">
+			<!-- column -->
+			<div class="col-md-7 mb-3">
+				<a href="index.php?action=addproduct"><button type="button" class="btn btn-warning">Thêm mới</button></a>
 			</div>
 
-			<ul class="box-info">
-        
-				<!-- <a href="#"> -->
-				<a href="index.php?action=addproduct">
-					<!-- <li id="modal-btn"> -->
-					<li>
-						<i class='bx bxs-calendar-check' ></i>
-						<span class="text">
-							<p>Thêm mới</p>
-						</span>
-					</li>				
-				</a>						
-			</ul>
-			<div class="choose-option">
-          <form action="index.php?action=listproduct" method="post">
-                <input type="text" placeholder="Nhập từ khóa tìm kiếm" class="formoption" name="keyw">
-                <select name="idcg" style="border:1px #ccc solid;padding:5px;">
-                    <option value="0" selected>Tất cả</option>
-                    <?php
-                        foreach ($listcategory as $category) {
-                            extract($category);
-                            echo '<option value="'.$idcg.'">'.$namecg.'</option>';
-                        }
-                    ?>                 
-                </select>
-                <input type="submit" name="choose" class="formoption filter" value="Thực hiện">
-          </form>
-        </div>
-
-
-			<div class="table-data">
-				<div class="order">
-					<div class="head">
-						<h3>Product</h3>
-						<i class='bx bx-search' ></i>
-						<i class='bx bx-filter' ></i>
+			<div class="col-md-6 mb-3">
+				<form action="index.php?action=listproduct" method="post">
+					<input type="text" placeholder="Nhập từ khóa tìm kiếm" class="mr-2" name="keyw" style="border-radius: 5px;border:1px solid #ccc;padding: 3.5px;">
+					<select name="idcg" style="border:1px #ccc solid;padding:3.5px;" class="mr-2">
+						<option value="0" selected>Tất cả</option>
+						<?php
+						foreach ($listcategory as $category) {
+							extract($category);
+							echo '<option value="' . $idcg . '">' . $namecg . '</option>';
+						}
+						?>
+					</select>
+					<input type="submit" style="padding: 3px 10px;" name="choose" class="btn btn-primary mb-1" value="Thực hiện">
+				</form>
+			</div>
+			<div class="col-md-12">
+				<div class="card card-primary">
+					<div class="card-header">
+						<h3 class="card-title">Danh Sách Sản Phẩm</h3>
 					</div>
-					<table>
+					<!-- form start -->
+					<table class="table">
 						<thead>
 							<tr>
-                <th></th>
-								<th>ID</th>
+								<th style="width: 10px">ID</th>
 								<th>Name</th>
-                <th>Img</th>
+								<th>Images</th>
 								<th>Price</th>
-								<th>View</th>
-								<th>Manipulation</th>
+								<th>Quantity</th>
+								<th>Danh Mục</th>
+								<th style="width: 120px"> &nbsp;</th>
 							</tr>
 						</thead>
 						<tbody>
-              <?php
-                foreach($listproduct as $product){
-                  extract($product);
+							<?php
+							foreach ($listproduct as $product) :
+								extract($product);
 
-                  $editproduct = "index.php?action=editproduct&idp=".$idp;
-                  $deleteproduct = "index.php?action=deleteproduct&idp=".$idp;
-                  $img_path="../upload/".$img;
+								$editproduct = "index.php?action=editproduct&idp=" . $idp;
+								$deleteproduct = "index.php?action=deleteproduct&idp=" . $idp;
+								$img_path = "../upload/" . $img;
 
-                  //check path
-                  if(is_file($img_path)){
-                    $images = "<img src='".$img_path."'>";
-                  }else{
-                    $images = "no photo";
-                  }
-                  echo '<tr>
-                    <td></td> 
-                    <td><p>'.$idp.'<p></td>
-                    <td>'.$namep.'</td>
-                    <td>'.$images.'</td>
-                    <td>'.$price.'</td>
-                    <td>'.$view.'</td>
-                    <td>
-										<a href="'.$editproduct.'"><input class="status process" type="button" value="sửa"></a>
-										<a href="'.$deleteproduct.'"><input class="status pending" type="button" value="xóa"></a>
-                    </td
-                  </tr>';
-                }
-              ?>
-							
+								//check path
+								if (is_file($img_path)) {
+									$images = "<img width='50px' height='50px' src='".$img_path."' alt='Image'>";
+								} else {
+									$images = "no photo";
+								}
+							?>
+								<tr>
+									<td><?= $idp ?></td>
+									<td><?= $namep ?></td>
+									<td><?= $images ?></td>
+									<td><?= $price ?></td>
+									<td><?= $quantity ?></td>
+									<td>
+										<?php
+										foreach($listcategory as $category){
+											if($product['idcg'] == $category['idcg'])
+											{
+												echo $category['namecg'];
+												break;
+											}
+										}
+										 ?>
+									</td>
+									<td>
+										<a class="btn btn-primary mr-2" href="<?= $editproduct ?>"><i class="fas fa-edit"></i></a>
+										<a class="btn btn-danger" href="<?= $deleteproduct ?>"><i class="fas fa-trash"></i></a>
+									</td>
+								</tr>
+							<?php
+							endforeach;
+							?>
 						</tbody>
 					</table>
+					<!-- end form -->
+					<!-- start page -->
+
+					<!-- end page -->
+				</div>
+				<div style="background-color: transparent;" class="card-footer clearfix">
+					<ul class="pagination pagination-sm m-0 float-right">
+						<li class="page-item"><a class="page-link" href="#">«</a></li>
+						<li class="page-item"><a class="page-link" href="#">1</a></li>
+						<li class="page-item"><a class="page-link" href="#">2</a></li>
+						<li class="page-item"><a class="page-link" href="#">3</a></li>
+						<li class="page-item"><a class="page-link" href="#">»</a></li>
+					</ul>
 				</div>
 			</div>
-		</main>
-		<!-- MAIN -->
-	</section>
-	<!-- CONTENT -->
+
+			<!-- stary button -->
+
+			<!-- end buttom -->
+		</div>
+
+	</div>
+</section>

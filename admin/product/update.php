@@ -4,68 +4,81 @@
     extract($product);
   }
 
-  $imgpath="../upload/".$img;
-    if(is_file($imgpath)){
-        $images = "<img src='".$imgpath."' height='80'>";
-    }else{
-        $images = "no photo";
-    }
+  $img_path="../upload/".$img;
+  if (is_file($img_path)) {
+    $images = "<img width='50px' height='50px' src='".$img_path."' alt='Image'>";
+  } else {
+    $images = "no photo";
+  }
 ?>
-<div id="my-modal" class="modal-add">
-  <div class="modal-content">
-    <div class="modal-header">
-      <span class="close">&times;</span>
-      <h2 style="text-align: center;">Sửa Sản Phẩm</h2>
-    </div>
-    <div class="modal-body">
-      <form action="index.php?action=updateproduct" method="post" enctype="multipart/form-data">
-        <div class="boxform">
-          <table>
-            <div class="row mb10">
-              <p>Category</p>
-              <select name="idcg">
-                <?php
-                foreach ($listcategory as $category) {
-                  extract($category);
-                  if ($category['idcg'] == $product['idcg'])
-                    echo '<option value="' . $category['idcg'] . '" selected>' . $category['namecg'] . '</option>';
-                  else
-                    echo '<option value="'.$category['idcg'].'">'.$category['namecg'].'</option>';
-                }
-                ?>
-              </select>
-            </div>
-            <div class="row mb10">
-              <p>Name product</p>
-              <input type="text" class="inputaddform" name="namep" value="<?=$namep?>">
-            </div>
-            <div class="row mb10">
-              <p>Price</p>
-              <input type="text" class="inputaddform" name="price" value="<?=$price?>">
-            </div>
-            <div class="row mb10">
-              <p>Images</p>
-              <input type="file" class="inputaddform" name="upload"><?=$images?>
-            </div>
-            <div class="row mb10">
-              <p>Describe</p>
-              <textarea name="info" cols="30" rows="10" style="width:100%;"><?=$info?></textarea>
-            </div>
-            <div class="row mb10">
+<section class="content">
+	<div class="container-fluid">
+		<div class="row">
+			<!-- column -->
+			<div class="col-md-12">
+				<div class="card card-primary">
+					<div class="card-header">
+						<h3 class="card-title">Sửa Sản Phẩm</h3>
+					</div>
+					<!-- form start -->
+					<form action="index.php?action=updateproduct" method="post" enctype="multipart/form-data">
+						<div class="card-body">
+							<div class="form-group">
+								<label>Danh mục</label>
+								<select class="custom-select" name="optdanhmuc">
+									<option selected>choose</option>
+									<?php
+										foreach ($listcategory as $category) :
+											extract($category);
+                      if ($category['idcg'] == $product['idcg'])
+                        echo ' <option value="' .$category['idcg']. '" selected>' .$category['namecg']. '</option> ';
+                      else {
+                        echo ' <option value="' .$category['idcg']. '">' .$category['namecg']. '</option> ';
+                      }
+										endforeach;
+									?>
+								</select>
+							</div>
+							<div class="form-group">
+								<label>Tên sản phẩm</label>
+								<input type="text" class="form-control"placeholder="Nhập tên sản phẩm" name="namep" value="<?=$namep?>" require>
+							</div>
+							<div class="form-group">
+								<label>Price</label>
+								<input type="number" class="form-control" name="price" value="<?=$price?>" placeholder="Nhập giá bán" require>
+							</div>
+							<div class="form-group">
+								<label>Quantity</label>
+								<input type="number" class="form-control" name="quantity" value="<?=$quantity?>" placeholder="Nhập số lượng" require>
+							</div>
+							<div class="form-group">
+								<label>Images</label>
+								<input type="file" class="form-control mb-2" name="upload">
+                <?=$images?>
+							</div>
+							<div class="form-group">
+								<label>Describe</label>
+								<textarea name="info" cols="30" rows="10" class="form-control"><?=$info?></textarea>
+							</div>
+						</div>
+						<!-- /.card-body -->
+
+						<div class="card-footer">
               <input type="hidden" name="idp" value="<?=$idp?>">
-              <input type="submit" name="update" value="Update">
-              <a href="index.php?action=listproduct"><input type="button" value="Danh sách"></a>
-            </div>
-            <?php
-                if(isset($thongbao)&&($thongbao != ""))
-                  echo '<p style="color: red; font-style: italic; font-size: 16px;">'.$thongbao.'</p>';
-             ?>
-          </table>
-        </div>
-      </form>
-    </div>
-    <div class="modal-footer">
-      <h3>Modal Footer</h3>
-    </div>
-  </div>
-</div>
+							<input type="submit" value="Lưu" name="update" class="btn btn-success mr-2" style="width: 100px;">
+							<a href="index.php?action=listproduct"><input type="button" value="Cancel" name="" class="btn btn-warning" style="width: 100px;color:#fff;"></a>
+						</div>
+					</form>
+					<!-- end form -->
+				</div>
+			</div>
+			<?php
+				if(isset($thongbao)&&($thongbao!="")) echo '<p class="text-danger">'.$thongbao.'</p>';
+			?>
+			<!-- stary button -->
+
+			<!-- end buttom -->
+		</div>
+
+	</div>
+</section>
