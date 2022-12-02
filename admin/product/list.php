@@ -46,7 +46,7 @@
 
 								$editproduct = "index.php?action=editproduct&idp=" . $idp;
 								$deleteproduct = "index.php?action=deleteproduct&idp=" . $idp;
-								$img_path = "../upload/" . $img;
+								$img_path = "../../upload/" . $img;
 
 								//check path
 								if (is_file($img_path)) {

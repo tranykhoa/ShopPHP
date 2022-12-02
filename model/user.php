@@ -6,7 +6,7 @@ function insert_user($name, $img, $email, $password, $tel,$status){
 }
 
 function check_user($email,$pass){
-  $sql = "select * from user where email='".$email."' AND pass='".$pass."' AND status= 1 ";
+  $sql = "select * from user where email='".$email."' AND pass='".$pass."' AND status = 1 ";
   $tk = pdo_query_one($sql);
   return $tk;
 }

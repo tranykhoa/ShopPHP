@@ -33,7 +33,7 @@
 								$edituser = "index.php?action=edituser&id=" . $id;
 								$deleteuser = "index.php?action=deleteuser&id=" . $id;
 
-								$img_path = "../upload/" . $img;
+								$img_path = "../../upload/" . $img;
 
 								//check path
 								if (is_file($img_path)) {

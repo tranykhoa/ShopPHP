@@ -46,7 +46,7 @@
                             </td>
                             <td class="align-middle">$ <?=$cart[5]?></td>
                             <td class="align-middle">
-                            <a href="<?=$xoasp?>"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></a>
+                            <a href="<?=$xoasp?>"><button class="btn btn-sm btn-primary"><i class="fas fa-trash-alt"></i></button></a>
                             </td>
                         </tr>
                         <?php

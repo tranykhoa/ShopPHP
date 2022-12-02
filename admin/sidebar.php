@@ -1,4 +1,4 @@
-<body class="hold-transition sidebar-mini">
+
 	<div class="wrapper">
 
 		<nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -21,19 +21,23 @@
 		<aside class="main-sidebar sidebar-dark-primary elevation-4">
 			<!-- Brand Logo -->
 			<a href="../index3.html" class="brand-link">
-				<img src="./dist/img/sidebar-K2.jpg" alt="Kshop Logo" class="brand-image img-circle elevation-3" style="opacity: 0.8" />
+				<img src="../dist/img/sidebar-K2.jpg" alt="Kshop Logo" class="brand-image img-circle elevation-3" style="opacity: 0.8" />
 				<span class="brand-text font-weight-light">SHOPPER</span>
 			</a>
-
+			<?php
+				if(isset($_SESSION['admin'])){
+					extract($_SESSION['admin']);
+				}
+			?>
 			<!-- Sidebar -->
 			<div class="sidebar">
 				<!-- Sidebar user panel (optional) -->
 				<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 					<div class="image">
-						<img src="./dist/img/khoa.jpg" class="img-circle elevation-2" alt="User Image" />
+						<img src="../../upload/<?=$img?>" class="img-circle elevation-2" alt="User Image" />
 					</div>
 					<div class="info">
-						<a href="#" class="d-block">Trần Y Khoa</a>
+						<a href="#" class="d-block"><?=$fullname?></a>
 					</div>
 				</div>
 
@@ -62,13 +66,13 @@
 							</a>
 							<ul class="nav nav-treeview">
 								<li class="nav-item">
-									<a href="index.php?action=listcategory" class="nav-link">
+									<a href="../category/index.php?action=listcategory" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Danh sách</p>
 									</a>
 								</li>
 								<li class="nav-item">
-									<a href="index.php?action=addcategory" class="nav-link">
+									<a href="../category/index.php?action=addcategory" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Thêm danh mục</p>
 									</a>
@@ -87,13 +91,13 @@
 							</a>
 							<ul class="nav nav-treeview">
 								<li class="nav-item">
-									<a href="index.php?action=listproduct" class="nav-link">
+									<a href="../product/index.php?action=listproduct" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Danh sách</p>
 									</a>
 								</li>
 								<li class="nav-item">
-									<a href="index.php?action=addproduct" class="nav-link">
+									<a href="../product/index.php?action=addproduct" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Thêm sản phẩm</p>
 									</a>
@@ -112,13 +116,13 @@
 							</a>
 							<ul class="nav nav-treeview">
 								<li class="nav-item">
-									<a href="index.php?action=listcustomer" class="nav-link">
+									<a href="../customer/index.php?action=listcustomer" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Danh sách</p>
 									</a>
 								</li>
 								<li class="nav-item">
-									<a href="index.php?action=addcustomer" class="nav-link">
+									<a href="../customer/index.php?action=addcustomer" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Thêm tài khoản</p>
 									</a>
@@ -137,7 +141,7 @@
 							</a>
 							<ul class="nav nav-treeview">
 								<li class="nav-item">
-									<a href="index.php?action=listbill" class="nav-link">
+									<a href="../bill/index.php?action=listbill" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Danh sách</p>
 									</a>
@@ -156,13 +160,13 @@
 							</a>
 							<ul class="nav nav-treeview">
 								<li class="nav-item">
-									<a href="index.php?action=listuser" class="nav-link">
+									<a href="../user/index.php?action=listuser" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Danh sách</p>
 									</a>
 								</li>
 								<li class="nav-item">
-									<a href="index.php?action=adduser" class="nav-link">
+									<a href="../user/index.php?action=adduser" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Thêm tài khoản</p>
 									</a>
@@ -204,6 +208,15 @@
 									</a>
 								</li>
 							</ul>
+						</li>
+
+						<li class="nav-item">
+							<a href="index.php?action=logout" class="nav-link">
+							<i class="fas fa-door-open nav-icon"></i>
+								<p>
+									Thoát
+								</p>
+							</a>
 						</li>
 					</ul>
 				</nav>

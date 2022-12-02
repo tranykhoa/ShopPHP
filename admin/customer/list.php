@@ -30,7 +30,7 @@
 
 								$editcustomer = "index.php?action=editcustomer&idac=" . $idac;
 								$deletecustomer = "index.php?action=deletecustomer&idac=" . $idac;
-								$img_path = "../upload/" . $images;
+								$img_path = "../../upload/" . $images;
 
 								//check path
 								if (is_file($img_path)) {

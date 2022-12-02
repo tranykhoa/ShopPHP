@@ -4,7 +4,7 @@
     extract($one_user);
   }
 
-  $img_path="../upload/".$img;
+  $img_path="../../upload/".$img;
   if (is_file($img_path)) {
     $images = "<img width='50px' height='50px' src='".$img_path."' alt='Image'>";
   } else {

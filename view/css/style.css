@@ -20,6 +20,7 @@
   --gray: #6c757d;
   --gray-dark: #343a40;
   --primary: #D19C97;
+  /* --primary: #17a2b8; */
   --secondary: #EDF1FF;
   --success: #28a745;
   --info: #17a2b8;
@@ -2365,8 +2366,11 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #212529;
+  /* color: #fff; */
   background-color: #D19C97;
   border-color: #D19C97;
+  /* background-color: #17a2b8;
+  border-color: #17a2b8; */
 }
 
 .btn-primary:hover {
