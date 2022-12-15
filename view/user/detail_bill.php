@@ -8,6 +8,7 @@
             $mode = 'Credit Cart';
           }
         }
+        $xacnhan = "index.php?action=hoantatdonhang&id=".$idbill;
         ?>
   <!-- Checkout Start -->
    <div class="container-fluid pt-5">
@@ -75,7 +76,7 @@
                             <img width="80px" height="80px" src="./upload/<?=$img?>" alt="Image">
                           </td>
                           <td><?= $quantity ?></td>
-                          <td>$ <?= $price ?></td>
+                          <td><?= number_format($price) ?> đ</td>
                       </tr>
                       <?php
                         endforeach;
@@ -85,10 +86,23 @@
                   <div style="background-color: #C5837C;" class="card-footer border-secondary">
                         <div class="d-flex justify-content-between mt-2">
                             <h5 class="font-weight-bold">Total</h5>
-                            <h5 class="font-weight-bold">$ <?= $total ?></h5>
+                            <h5 class="font-weight-bold"><?= number_format($total) ?> đ</h5>
                         </div>
                   </div>
+                  
                 </div>
+                <?php
+                  if($status == 4)
+                        echo ' <p style="float: right;color: green;">Cám ơn quý khách đã ủng hộ shop!</p> ';
+                  else {
+                    echo ' <div style="float: right;">
+                    <a href="" class="btn btn-danger">Trả hàng, hoàn tiền</a>
+                    <a href="'.$xacnhan.'" class="btn btn-success mr-2">Đã nhận hàng</a>
+                  </div> ';
+                  }
+                ?>
+                
+                
             </div>
         </div>
     </form>

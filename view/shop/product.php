@@ -171,9 +171,9 @@
                                 <img class="img-fluid w-100" src="./upload/<?=$img?>" alt="">
                             </div>
                             <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                <h6 class="text-truncate mb-3"><?=$namep?></h6>
+                                <h5 class="text-truncate mb-3"><?=$namep?></h5>
                                 <div class="d-flex justify-content-center">
-                                    <h6>$ <?=$price?></h6><h6 class="text-muted ml-2"><del>$ <?=($price + 6)?></del></h6>
+                                    <h6 class="text-danger"><?=number_format($price)?> đ</h6><h6 class="text-muted ml-2"><i class="fa-solid fa-location-dot"></i> Long Xuyên</h6>
                                 </div>
                             </div>
                             <div class="card-footer d-flex justify-content-between bg-light border">
@@ -205,13 +205,19 @@
                               if(isset($page)){
                                 $active = "active";
                               }
+                              if(isset($idcategory)){
+                                $idcate = $idcategory;
+                              }else{
+                                $idcate = 0;
+                              }
+                              
                               $numberPages = 9;
                               $totalPages = ceil($num / $numberPages);
                               for($i = 1; $i <= $totalPages; $i++):
                                 if($i == $page){
-                                  echo ' <li class="page-item '.$active.'"><a class="page-link" href="index.php?action=shop&page='.$i.'">'.$i.'</a></li> ';
+                                  echo ' <li class="page-item '.$active.'"><a class="page-link" href="index.php?action=shop&page='.$i.'&idcg='.$idcate.'">'.$i.'</a></li> ';
                                 }else{
-                                  echo ' <li class="page-item"><a class="page-link" href="index.php?action=shop&page='.$i.'">' .$i. '</a></li> ';
+                                  echo ' <li class="page-item"><a class="page-link" href="index.php?action=shop&page='.$i.'&idcg='.$idcate.'">' .$i. '</a></li> ';
                                 }
                             ?>
                             

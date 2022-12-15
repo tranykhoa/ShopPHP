@@ -28,7 +28,7 @@
                             <td class="align-middle">
                                 <img width="80px" height="80px" src="./upload/<?=$cart[3]?>" alt="Image">
                             </td>
-                            <td class="align-middle">$ <?=$cart[2]?></td>
+                            <td class="align-middle"><?=number_format($cart[2])?> đ</td>
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
                                     <div class="input-group-btn">
@@ -44,7 +44,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="align-middle">$ <?=$cart[5]?></td>
+                            <td class="align-middle"><?=number_format($cart[5])?> đ</td>
                             <td class="align-middle">
                             <a href="<?=$xoasp?>"><button class="btn btn-sm btn-primary"><i class="fas fa-trash-alt"></i></button></a>
                             </td>
@@ -72,17 +72,17 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between mb-3 pt-1">
                             <h6 class="font-weight-medium">Subtotal</h6>
-                            <h6 class="font-weight-medium">$ <?=$tong?></h6>
+                            <h6 class="font-weight-medium"><?=number_format($tong)?> đ</h6>
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6 class="font-weight-medium">Shipping</h6>
-                            <h6 class="font-weight-medium">$ 10</h6>
+                            <h6 class="font-weight-medium">10,000 đ</h6>
                         </div>
                     </div>
                     <div class="card-footer border-secondary bg-transparent">
                         <div class="d-flex justify-content-between mt-2">
                             <h5 class="font-weight-bold">Total</h5>
-                            <h5 class="font-weight-bold">$ <?=($tong + 10)?></h5>
+                            <h5 class="font-weight-bold"><?=number_format(($tong + 10000))?> đ</h5>
                         </div>
                         <a href="index.php?action=checkout"><button class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</button></a>
                     </div>

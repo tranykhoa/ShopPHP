@@ -1,11 +1,11 @@
 <?php
-  function insert_bill($idac,$name, $email,$tel, $address,$pttt,$orderdate,$tongtien){
-    $sql="insert into bill(idac,nameuser,email,tel,address,pttt,orderdate,total) values('$idac','$name', '$email','$tel','$address','$pttt','$orderdate','$tongtien')";
+  function insert_bill($idac, $email,$tel, $address,$pttt,$orderdate,$tongtien){
+    $sql="insert into bill(idac,email,tel,address,pttt,orderdate,total) values('$idac','$email','$tel','$address','$pttt','$orderdate','$tongtien')";
     return pdo_execute_lastInsertId($sql);
   }
 
-  function insert_cart($idac, $idp, $name,$img,$price,$soluong,$thanhtien,$idbill){
-    $sql="insert into cart(idac,idp,namep,img,price,quantity,thanhtien,idbill) values('$idac', '$idp', '$name','$img','$price','$soluong','$thanhtien','$idbill')";
+  function insert_cart( $idp, $name,$img,$price,$soluong,$thanhtien,$idbill){
+    $sql="insert into cart(idp,namep,img,price,quantity,thanhtien,idbill) values( '$idp', '$name','$img','$price','$soluong','$thanhtien','$idbill')";
     pdo_execute($sql);
   }
 

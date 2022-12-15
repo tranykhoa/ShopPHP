@@ -7,6 +7,8 @@
   include "./model/category.php";
   include "./model/account_customer.php";
   include "./model/cart.php";
+  include "./model/bill.php";
+  include "./mail/sendmail.php";
   
 
   include "./view/includes/header.php";
@@ -22,10 +24,14 @@
     $action=$_GET['action'];
     switch ($action) {
       case 'shop':
-        if(isset($_GET["idcg"])){
-          $idcg = $_GET['idcg'];
+        if(!isset($_GET['idcg'])&&!isset($_POST['idcg'])){
+          $idcategory = 0;
+        }else if(isset($_GET["idcg"])){
+          $idcategory = $_GET['idcg'];
+        }else if(isset($_POST['idcg'])){
+          $idcategory = $_POST['idcg'];
         }else{
-          $idcg = 0;
+          $idcategory = 0;
         }
 
         if(isset($_POST['keyw'])){
@@ -40,15 +46,8 @@
           $page = 1;
         }
 
-        if(isset($_POST["idcg"])){
-          $idcg=$_POST["idcg"];
-          $listproduct = loadall_product_loadpage($keyw,$idcg,1);
-        }
-        else{
-          // $idcg = 0;
-          $listproduct = loadall_product_loadpage($keyw,$idcg,$page);
-        }
-        $num = rowsCount($idcg);
+        $listproduct = loadall_product_loadpage($keyw,$idcategory,$page);
+        $num = rowsCount($idcategory);
         $listcategory = loadall_category();
         include "./view/shop/product.php";
         break;
@@ -88,7 +87,7 @@
             //   $error['password'] = "B  ạn cần nhập password";
             // }
 
-            $user = check_account_customer($email,$pass);
+            $user = check_account_customer($email,md5($pass));
             if(is_array($user)){
               $_SESSION['user'] = $user;
                   // $thongbao = "Bạn đã đăng nhập thành công";
@@ -203,12 +202,15 @@
           $total = $_POST['sumtotal'];
           $pttt = 2;
           $orderdate = date('h:i:sa d/m/Y');
-          $idbill = insert_bill($idac,$nameuser, $email,$tel, $address,$pttt,$orderdate,$total);
+
+          
+
+          $idbill = insert_bill($idac , $email,$tel, $address,$pttt,$orderdate,$total);
 
           // insert into cart: $session['cart] & idbill
 
           foreach ($_SESSION['cart'] as $cart) {
-            insert_cart($idac,$cart[0],$cart[1],$cart[3],$cart[2],$cart[4],$cart[5],$idbill);
+            insert_cart($cart[0],$cart[1],$cart[3],$cart[2],$cart[4],$cart[5],$idbill);
           }
           $_SESSION['cart'] = [];
         }
@@ -233,7 +235,34 @@
         include "view/user/detail_bill.php";
         break;
       case 'contact':
+        $email_user = "";
+        if(isset($_SESSION['user'])){
+        if(isset($_POST['send'])){
+          
+            $email_user = $_SESSION['user']['email'] . "-------->";
+         
+          $tieude =$email_user . $_POST['subject'];
+          $noidung = $_POST['message'];
+          $email = 'tykhoa_20th@student.agu.edu.vn';
+
+          $mail = new Mailer();
+          $mail->mailhoadon($email,$tieude,$noidung);
+        }
         include "./view/includes/contact.php";
+      }else{
+        header('location: index.php?action=signin');
+      }
+        break;
+      case 'hoantatdonhang':
+        if(isset($_GET['id'])){
+          $id = $_GET['id'];
+          $status = 4;
+          update_status_bill($id,$status);
+        }
+        if(isset($_SESSION['user'])&&($_SESSION['user'])){
+          $listbill = loadall_mybill("",$_SESSION['user']['idac']);
+        }
+        include "view/user/mybill.php";
         break;
       default:
         include "./view/includes/home.php";

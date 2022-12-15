@@ -26,6 +26,33 @@
         unset($_SESSION['admin']);
         header('location: ../login');
         break;
+      case 'xacnhan':
+        if(isset($_GET['id'])){
+          $id = $_GET['id'];
+          $status = 2;
+          update_status_bill($id,$status);
+        }
+        $listbill = loadall_bill();
+        include "list.php";
+        break;
+      case 'chitietdonhang':
+        if(isset($_GET['id'])){
+          $id = $_GET['id'];
+          $onebill = loadone_bill($id);
+          $listcart = loadall_cart($id);
+          $one_customer = loadone_account_customer($onebill['idac']);
+        }
+        include "detail.php";
+        break;
+      case 'dongy':
+        if(isset($_GET['id'])){
+          $id = $_GET['id'];
+          $status = 3;
+          update_status_bill($id,$status);
+        }
+        $listbill = loadall_bill();
+        include "list.php";
+        break;
       default:
         include "../content.php";
         break;

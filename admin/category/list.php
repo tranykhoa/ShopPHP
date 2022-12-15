@@ -1,10 +1,17 @@
+
 <section class="content">
 	<div class="container-fluid">
 		<div class="row">
 			<!-- column -->
 			<div class="col-md-6 mb-3">
 				<a href="index.php?action=addcategory"><button type="button" class="btn btn-warning">Thêm mới</button></a>
-			</div>	
+			</div>
+			<div class="col-md-8 mb-3">
+			<form action="index.php?action=listcategory" method="post" enctype="multipart/form-data">
+					<input type="file" name="file">
+					<input type="submit" value="Import Excel" name="import" class="btn btn-success">
+			</form>
+			</div>
 			<div class="col-md-12">
 				<div class="card card-primary">
 					<div class="card-header">

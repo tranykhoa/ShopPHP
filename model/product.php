@@ -12,17 +12,38 @@ function delete_product($idp){
     pdo_execute($sql);
 }
 
-function loadall_product($keyw,$idcg){
+// function loadall_product($keyw,$idcg){
+//     $sql="select * from product where 1";//where 1 tất là câu này nó đúng
+//     $sql.=" and status like 1";
+//     if($keyw != ""){
+//         $sql.=" and namep like '%".$keyw."%'";
+//     }
+//     if($idcg > 0){
+//         $sql.=" and idcg = '".$idcg."'";
+//     }
+//     $sql.=" order by idp desc";//nối chuổi nhớ cách khoảng
+//     $listproduct = pdo_query($sql);
+//     return $listproduct;
+// }
+
+function loadall_product($keyw,$idcg,$start,$soluong){
     $sql="select * from product where 1";//where 1 tất là câu này nó đúng
+    $sql.=" and status like 1";
     if($keyw != ""){
         $sql.=" and namep like '%".$keyw."%'";
     }
     if($idcg > 0){
         $sql.=" and idcg = '".$idcg."'";
     }
-    $sql.=" order by idp desc";//nối chuổi nhớ cách khoảng
+    $sql.=" order by idp desc limit ".$start.','.$soluong;//nối chuổi nhớ cách khoảng
     $listproduct = pdo_query($sql);
     return $listproduct;
+}
+
+function count_product(){
+    $sql = "select count(*) from product";
+    $count = pdo_query_column($sql);
+    return $count;
 }
 
 
@@ -42,13 +63,13 @@ function loadall_product_loadpage($keyw,$idcg,$page){
 }
 
 function loadall_product_home(){
-    $sql="select * from product where 1 order by idp desc limit 0,8";
+    $sql="select * from product where 1 and status like 1 order by idp desc limit 0,8";
     $listproduct = pdo_query($sql);
     return $listproduct;
 }
 
 function loadall_product_top_view(){
-    $sql="select * from product where 1 order by view desc limit 0,8";
+    $sql="select * from product where 1 and status like 1 order by view desc limit 0,8";
     $listproduct = pdo_query($sql);
     return $listproduct;
 }
@@ -77,6 +98,10 @@ function update_product($idp,$namep, $price ,$quantity ,$img, $info ,$idcg){
     pdo_execute($sql);
 }
 
+function remove_product($idp,$status){
+    $sql="update product set status='".$status."' where idp=".$idp;
+    pdo_execute($sql);
+}
 
 
 function load_products_same($idp){

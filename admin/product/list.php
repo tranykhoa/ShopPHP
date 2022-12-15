@@ -39,6 +39,7 @@
 								<th style="width: 120px"> &nbsp;</th>
 							</tr>
 						</thead>
+						
 						<tbody>
 							<?php
 							foreach ($listproduct as $product) :
@@ -90,9 +91,21 @@
 				<div style="background-color: transparent;" class="card-footer clearfix">
 					<ul class="pagination pagination-sm m-0 float-right">
 						<li class="page-item"><a class="page-link" href="#">«</a></li>
-						<li class="page-item"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
+						<?php
+						if(isset($page)){
+							$active = "active";
+						}
+						for ($i= 1; $i <= $sotrang ; $i++) {
+							if($i == $page){
+								echo ' <li class="page-item '.$active.'"><a class="page-link" href="?action=listproduct&page='.$i.'">'.$i.'</a></li> ';
+							}else{
+								echo ' <li class="page-item"><a class="page-link" href="?action=listproduct&page='.$i.'">'.$i.'</a></li> ';
+							}		
+						}
+						?>
+						
+						<!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
+						<li class="page-item"><a class="page-link" href="#">3</a></li> -->
 						<li class="page-item"><a class="page-link" href="#">»</a></li>
 					</ul>
 				</div>

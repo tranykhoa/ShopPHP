@@ -1,12 +1,12 @@
 <div class="login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="index.php?action=loginform"><b>Admin</b></a>
+    <a href="index.php?action=loginform"><b>Quảng Trị Website</b></a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">Không có tài khoản thì cút</p>
+      <p class="login-box-msg">Nhập tài khoản mật khẩu ở đây anh bạn à</p>
 
       <form action="index.php?action=signin" method="post">
         <div class="input-group mb-3">
@@ -36,7 +36,7 @@
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <input type="submit" name="login" class="btn btn-primary btn-block">Sign In</input>
+            <input type="submit" name="login" value="sign in" class="btn btn-primary btn-block">
           </div>
           <!-- /.col -->
         </div>
@@ -46,23 +46,15 @@
           <p style="color: red; display: flex; align-items: center;font-style: italic; font-size: 16px;"><i style="font-size: 2rem;" class='bx bxs-error-circle'></i><?=$thongbao?></p>
           <?php }
        ?>
-      <div class="social-auth-links text-center mb-3">
-        <p>- OR -</p>
-        <a href="#" class="btn btn-block btn-primary">
-          <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-        </a>
-        <a href="#" class="btn btn-block btn-danger">
-          <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-        </a>
-      </div>
+
       <!-- /.social-auth-links -->
 
-      <p class="mb-1">
+      <!-- <p class="mb-1">
         <a href="forgot-password.html">I forgot my password</a>
       </p>
       <p class="mb-0">
         <a href="register.html" class="text-center">Register a new membership</a>
-      </p>
+      </p> -->
     </div>
     <!-- /.login-card-body -->
   </div>

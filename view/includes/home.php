@@ -72,32 +72,32 @@
         <div class="row px-xl-5 pb-3">
             <div class="col-lg-4 col-md-6 pb-1">
                 <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
-                    <p class="text-right">15 Products</p>
-                    <a href="" class="cat-img position-relative overflow-hidden mb-3">
-                        <img class="img-fluid" src="./view/img/cat-1.jpg" alt="">
+                    <p class="text-right">9 Products</p>
+                    <a href="index.php?action=shop&idcg=37" class="cat-img position-relative overflow-hidden mb-3">
+                        <img class="img-fluid" src="./view/img/at-02.png" alt="">
                     </a>
-                    <h5 class="font-weight-semi-bold m-0">Men's dresses</h5>
+                    <h5 class="font-weight-semi-bold m-0">Áo Thun</h5>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 pb-1">
                 <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
-                    <p class="text-right">15 Products</p>
-                    <a href="" class="cat-img position-relative overflow-hidden mb-3">
-                        <img class="img-fluid" src="./view/img/cat-2.jpg" alt="">
+                    <p class="text-right">9 Products</p>
+                    <a href="index.php?action=shop&idcg=38" class="cat-img position-relative overflow-hidden mb-3">
+                        <img class="img-fluid" src="./view/img/dp-02.png" alt="">
                     </a>
-                    <h5 class="font-weight-semi-bold m-0">Women's dresses</h5>
+                    <h5 class="font-weight-semi-bold m-0">Đồng Phục Thể Thao</h5>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 pb-1">
                 <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
-                    <p class="text-right">15 Products</p>
-                    <a href="" class="cat-img position-relative overflow-hidden mb-3">
-                        <img class="img-fluid" src="./view/img/cat-3.jpg" alt="">
+                    <p class="text-right">13 Products</p>
+                    <a href="index.php?action=shop&idcg=36" class="cat-img position-relative overflow-hidden mb-3">
+                        <img class="img-fluid" src="./view/img/pk-002-new.png" alt="">
                     </a>
-                    <h5 class="font-weight-semi-bold m-0">Baby's dresses</h5>
+                    <h5 class="font-weight-semi-bold m-0">Phụ Kiện</h5>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 pb-1">
+            <!-- <div class="col-lg-4 col-md-6 pb-1">
                 <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
                     <p class="text-right">15 Products</p>
                     <a href="" class="cat-img position-relative overflow-hidden mb-3">
@@ -123,7 +123,7 @@
                     </a>
                     <h5 class="font-weight-semi-bold m-0">Shoes</h5>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
     <!-- Categories End -->
@@ -176,9 +176,9 @@
                         <img class="img-fluid w-100" src="./upload/<?=$img?>" alt="">
                     </div>
                     <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                        <h6 class="text-truncate mb-3"><?php echo $namep ?></h6>
+                        <h5 class="text-truncate mb-3"><?php echo $namep ?></h5>
                         <div class="d-flex justify-content-center">
-                            <h6>$ <?php echo $price ?></h6><h6 class="text-muted ml-2"><del>$ <?php echo ($price+16) ?></del></h6>
+                            <h6 class="text-danger"><?php echo number_format($price) ?> đ</h6><h6 class="text-muted ml-2"> <i class="fa-solid fa-location-dot"></i> Long Xuyên</h6>
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-between bg-light border">
@@ -237,9 +237,9 @@
                         <img class="img-fluid w-100" src="./upload/<?=$img?>" alt="">
                     </div>
                     <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                        <h6 class="text-truncate mb-3"><?php echo $namep ?></h6>
+                        <h5 class="text-truncate mb-3"><?php echo $namep ?></h5>
                         <div class="d-flex justify-content-center">
-                            <h6>$ <?php echo $price ?></h6><h6 class="text-muted ml-2"><del>$ <?php echo ($price+16) ?></del></h6>
+                            <h6 class="text-danger"><?php echo number_format($price) ?> đ</h6><h6 class="text-muted ml-2"><i class="fa-solid fa-location-dot"></i> Long Xuyên</h6>
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-between bg-light border">

@@ -14,17 +14,18 @@
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
                             <a href="index.php" class="nav-item nav-link ">Home</a>
-                            <a href="index.php?action=shop" class="nav-item nav-link">Shop</a>
-                            <div class="nav-item dropdown">
+                            <a href="index.php?action=shop&idcg=0" class="nav-item nav-link">Shop</a>
+                            <a href="index.php?action=shop&idcg=36" class="nav-item nav-link">Phụ kiện</a>
+                            <!-- <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Phụ kiện</a>
                                 <div class="dropdown-menu rounded-0 m-0">
                                     <a href="index.php?action=shop&idcg=32" class="dropdown-item">Găng Tay</a>
                                     <a href="index.php?action=shop" class="dropdown-item">Nón</a>
                                     <a href="index.php?action=shop" class="dropdown-item">Mắt Kinh</a>
                                 </div>
-                            </div>
+                            </div> -->
+                            <a href="detail.html" class="nav-item nav-link">About Us</a>
                             <a href="index.php?action=contact" class="nav-item nav-link">Contact</a>
-                            <a href="detail.html" class="nav-item nav-link">Introduce</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0">
                             <?php

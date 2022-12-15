@@ -29,7 +29,7 @@
                             <td class="align-middle">
                                <?=$count?>
                             </td>
-                            <td class="align-middle">$ <?=$total?></td>
+                            <td class="align-middle"><?=number_format($total)?> đ</td>
                             <td><?=$get_status?></td>
                             <td class="align-middle">
                               <form action="index.php?action=detail_bill" method="post">

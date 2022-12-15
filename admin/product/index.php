@@ -17,6 +17,22 @@
     $action = $_GET['action'];
     switch ($action) {
       case 'listproduct':
+          $tong_product = count_product();
+          $soluong = 15;
+          $sotrang = ceil($tong_product/$soluong);
+          if(!isset($_GET['page'])){
+            $page = 1;
+
+          }else{
+              $page = $_GET['page'];
+          }
+          if($page >$sotrang){
+              $page = $sotrang;
+          }else if($page<1){
+              $page = 1;
+          }
+          $start = ($page - 1)*$soluong;
+
           if(isset($_POST['choose'])&&($_POST['choose'])){
               $keyw = $_POST['keyw'];
               $idcg = $_POST['idcg'];
@@ -25,7 +41,7 @@
               $idcg = 0;
           }
               $listcategory = loadall_category();
-              $listproduct = loadall_product($keyw,$idcg);
+              $listproduct = loadall_product($keyw,$idcg,$start,$soluong);
               include "list.php";
               break;
       case 'addproduct':
@@ -52,11 +68,29 @@
             include "add.php";
             break;
       case 'deleteproduct':
+        $status = 0;
         if(isset($_GET['idp'])&&($_GET['idp']>0)){
-          delete_product($_GET['idp']);
+          $idp = $_GET['idp'];
+          remove_product($idp,$status);
         }
+
+        $tong_product = count_product();
+        $soluong = 20;
+        $sotrang = ceil($tong_product/$soluong);
+        if(!isset($_GET['page'])){
+          $page = 1;
+
+        }else{
+            $page = $_GET['page'];
+        }
+        if($page >$sotrang){
+            $page = $sotrang;
+        }else if($page<1){
+            $page = 1;
+        }
+        $start = ($page - 1)*$soluong;
         $listcategory = loadall_category();
-        $listproduct = loadall_product("",0);
+        $listproduct = loadall_product("",0,$start,$soluong);
         include "list.php";
         break;
       case 'editproduct':
@@ -102,7 +136,7 @@
                 header('Location: index.php?action=listproduct');
               }
           }
-          $listproduct = loadall_product('',0);
+          $listproduct = loadall_product('',0,1,20);
           $listcategory = loadall_category();
           include "update.php";
           break;

@@ -44,7 +44,7 @@
             if(in_array($file_extension, $loai_file)){
               if($file_size <= 1000000000){
                 move_uploaded_file($file_tmp_name, $destination_path);
-                insert_account_customer($name, $generated_file_name, $email, $password, $phone);
+                insert_account_customer($name, $generated_file_name, $email, md5($password), $phone);
                 header('Location: index.php?action=listcustomer');
               }else{
                 $thongbao = "file is too big";
@@ -53,15 +53,16 @@
               $thongbao = "Ivalid file type";
             }
           }else{
-            insert_account_customer($name, $file_name, $email, $password, $phone);
+            insert_account_customer($name, $file_name, $email, md5($password), $phone);
             header('Location: index.php?action=listcustomer');
           }
         }
         include "add.php";
         break;
       case 'deletecustomer':
+        $status = 0;
         if (isset($_GET['idac']) && ($_GET['idac'] > 0)) {
-          delete_account_customer($_GET['idac']);
+          remove_taikhoan($status,$_GET['idac']);
         }
         $listcustomer = loadall_account_customer();
         include "list.php";

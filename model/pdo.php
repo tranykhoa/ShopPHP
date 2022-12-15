@@ -3,7 +3,7 @@
  * Mở kết nối đến CSDL sử dụng PDO
  */
 function pdo_get_connection(){
-    $dburl = "mysql:host=localhost;dbname=shopclothes_db;charset=utf8";
+    $dburl = "mysql:host=localhost;dbname=db_shop;charset=utf8";
     $username = 'root';
     $password = '';
 
@@ -105,6 +105,23 @@ function pdo_query_one($sql){
         $stmt = $conn->prepare($sql);//chuẩn hóa câu lệnh sql
         $stmt->execute($sql_args);//thực thi
         $row = $stmt->fetch(PDO::FETCH_ASSOC);//trả về tất cả
+        return $row;
+    }
+    catch(PDOException $e){
+        throw $e;
+    }
+    finally{
+        unset($conn);
+    }
+}
+
+function pdo_query_column($sql){
+    $sql_args = array_slice(func_get_args(), 1);
+    try{
+        $conn = pdo_get_connection();
+        $stmt = $conn->prepare($sql);//chuẩn hóa câu lệnh sql
+        $stmt->execute($sql_args);//thực thi
+        $row = $stmt->fetchColumn();
         return $row;
     }
     catch(PDOException $e){

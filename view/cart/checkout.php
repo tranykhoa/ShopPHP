@@ -128,8 +128,8 @@
                         ?>
 
                         <div class="d-flex justify-content-between">
-                            <p>$ <?=$cart[1]?></p>
-                            <p>$ <?=$cart[5]?></p>
+                            <p><?=$cart[1]?></p>
+                            <p><?=number_format($cart[5])?> đ</p>
                         </div>
 
                         <?php
@@ -140,17 +140,17 @@
                         <hr class="mt-0">
                         <div class="d-flex justify-content-between mb-3 pt-1">
                             <h6 class="font-weight-medium">Subtotal</h6>
-                            <h6 class="font-weight-medium">$ <?=$tong?></h6>
+                            <h6 class="font-weight-medium"><?=number_format($tong)?> đ</h6>
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6 class="font-weight-medium">Shipping</h6>
-                            <h6 class="font-weight-medium">$10</h6>
+                            <h6 class="font-weight-medium">10,000 đ</h6>
                         </div>
                     </div>
                     <div class="card-footer border-secondary bg-transparent">
                         <div class="d-flex justify-content-between mt-2">
                             <h5 class="font-weight-bold">Total</h5>
-                            <h5 class="font-weight-bold">$ <?=$sum = ($tong + 10)?></h5>
+                            <h5 class="font-weight-bold"><?=number_format($sum = ($tong + 10))?> đ</h5>
                         </div>
                     </div>
                 </div>
@@ -162,19 +162,19 @@
                         <div class="form-group">
                             <div class="custom-control custom-radio">
                                 <input type="radio" class="custom-control-input" name="payment" id="paypal">
-                                <label class="custom-control-label" for="paypal">Paypal</label>
+                                <label class="custom-control-label" for="paypal">App Bank</label>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" id="directcheck">
-                                <label class="custom-control-label" for="directcheck">Direct Check</label>
+                                <input type="radio" class="custom-control-input" name="payment" checked>
+                                <label class="custom-control-label" for="directcheck">Thanh toán khi nhận hàng</label>
                             </div>
                         </div>
                         <div class="">
                             <div class="custom-control custom-radio">
                                 <input type="radio" class="custom-control-input" name="payment" id="banktransfer">
-                                <label class="custom-control-label" for="banktransfer">Bank Transfer</label>
+                                <label class="custom-control-label" for="banktransfer">Thẻ Vettel</label>
                             </div>
                         </div>
                     </div>

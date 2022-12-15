@@ -10,7 +10,7 @@ function delete_category($idcg){
 }
 
 function loadall_category(){
-    $sql="select * from category order by idcg desc";
+    $sql="select * from category where 1 and status like 1 order by idcg desc";
     $listcategory = pdo_query($sql);
     return $listcategory;
 }
@@ -23,6 +23,12 @@ function update_category($idcg,$namecg){
     $sql="update category set namecg='".$namecg."' where idcg=".$idcg;
     pdo_execute($sql);
 }
+
+function remove_category($idcg,$status){
+    $sql="update category set status='".$status."' where idcg=".$idcg;
+    pdo_execute($sql);
+}
+
 
 // function loadname_danhmuc($id){
 //    if($id > 0){

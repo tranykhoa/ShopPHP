@@ -23,7 +23,7 @@
           //   $error['password'] = "B  ạn cần nhập password";
           // }
 
-          $admin = check_user($email,$pass);
+          $admin = check_user($email,md5($pass));
           if(is_array($admin)){
             $_SESSION['admin'] = $admin;
                 // $thongbao = "Bạn đã đăng nhập thành công";
