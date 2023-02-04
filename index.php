@@ -57,6 +57,8 @@
           $oneproduct = loadone_product($idp);
           extract($oneproduct);
           $product_same = load_products_same($idp);
+          tangluotxem($idp);
+
             include "view/shop/productDetails.php";
         }else{
             include "view/shop/content.php";
@@ -64,13 +66,22 @@
         break;
       case 'signup':
         if (isset($_POST['signup']) && ($_POST['signup'])) {
-          $name = $_POST['name'];
+          $name = $_POST['name'];        
           $email = $_POST['email'];
           $password = $_POST['password'];
           $phone = $_POST['phone'];
+          $length = strlen($phone);
           $img = $_POST['images'];
-          insert_account_customer($name, $img, $email, $password, $phone);
-          $thongbao = "Đăng ký thành công";
+          $ktra = check_email_account_customer($email);
+          if($length != 10){
+            $thongbao = "Số điện thoại không lớn hơn 10 chữ số";
+          }else if(is_array($ktra)){
+            $thongbao = "Tài khoản đã tồn tại";
+          }else{
+            insert_account_customer($name, $img, $email, md5($password), $phone);
+            $thongbao = "Đăng ký thành công";
+          }
+          
         }
         include "view/user/signup.php";
         break;
@@ -98,8 +109,25 @@
           }
           include "./view/user/signin.php";
           break;
+          
+        case 'doimatkhau':
+          if(isset($_POST['update'])){
+            if(md5($_POST['pass']) != $_SESSION['user']['pass']){
+              $thongbao = "Mật khẩu không chính xác";
+            }else  if(($_POST['passnew']== $_POST['cfpass']) && (md5($_POST['pass']) == $_SESSION['user']['pass'])){
+              $newpass = $_POST['passnew'];
+              $idac = $_POST['idac'];
+              update_password(md5($newpass),$idac);
+              $thongbao = "Đổi mật khẩu thành công";
+            }else{
+              $thongbao = "Xác nhận mật khẩu không đúng";
+            }
+          }
+          include "./view/user/doimatkhau.php";
+          break;
         case 'logout':
           unset($_SESSION['user']);
+          unset($_SESSION['cart']);
           header('location: index.php');
           break;
         case 'profile':
@@ -162,7 +190,7 @@
 
           for ($i=0; $i < count($_SESSION['cart']); $i++) { 
             if($idp == $_SESSION['cart'][$i][0]){
-              $_SESSION['cart'][$i] = $arr_product;
+              $_SESSION['cart'][$i][4] +=  $arr_product[4];
               $count++;
             }
           }
@@ -204,6 +232,9 @@
           $orderdate = date('h:i:sa d/m/Y');
 
           
+          $mail = new Mailer();
+          $noidung ="";
+          $tieude = "Information Bill";
 
           $idbill = insert_bill($idac , $email,$tel, $address,$pttt,$orderdate,$total);
 
@@ -211,10 +242,18 @@
 
           foreach ($_SESSION['cart'] as $cart) {
             insert_cart($cart[0],$cart[1],$cart[3],$cart[2],$cart[4],$cart[5],$idbill);
+            $noidung = '<ul>
+                          <li>Sản phẩm: '.$cart[1].'</li>
+                          <li>Số lượng: '.$cart[4].'</li>
+                          <li>Gía :'.$cart[2].'</li>
+                        </ul><br>';
           }
+          $noidung .= 'Cảm Ơn Quý Khách Đã Ủng Hộ !00';
+          $mail->mailhoadon($email,$tieude,$noidung);
           $_SESSION['cart'] = [];
         }
         $bill = loadone_bill($idbill);
+        // header('location: view/cart/confirm_checkout.php');
         include "view/cart/confirm_checkout.php";
         break;
       case 'mybill':

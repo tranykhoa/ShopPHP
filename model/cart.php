@@ -1,4 +1,5 @@
 <?php
+  // chi tiet hoa don
   function insert_bill($idac, $email,$tel, $address,$pttt,$orderdate,$tongtien){
     $sql="insert into bill(idac,email,tel,address,pttt,orderdate,total) values('$idac','$email','$tel','$address','$pttt','$orderdate','$tongtien')";
     return pdo_execute_lastInsertId($sql);

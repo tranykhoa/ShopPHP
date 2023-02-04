@@ -17,25 +17,6 @@
     $action = $_GET['action'];
     switch ($action) {
       case 'listcategory':
-        if(isset($_POST['import'])){
-          $file = $_FILES['file']['tmp_name'];
-
-          $file_ext = pathinfo($file, PATHINFO_EXTENSION);
-          $allow_ext = ['xls','csv','xlsx'];
-
-          if(in_array($file_ext,$allow_ext)){
-            $objRender = PHPExcel_IOFactory::createReaderForFile($file);
-            // $objRender->setLoadSheetsOnly('DM');
-            $objExcel = $objRender->load($file);
-
-            $data = $objExcel->getActiveSheet()->toArray('null',true,true,true);
-
-            
-
-            
-
-          }
-        }
         $listcategory = loadall_category();
         include "list.php";
         break;
@@ -50,7 +31,8 @@
       case 'deletecg':
         $status = 0;
         if(isset($_GET['idcg'])&&($_GET['idcg']>0)){
-          remove_category($_GET['idcg'],$status);
+          remove_category($_GET['idcg'],$status);// hàm xóa mềm để dễ dàng backup giữ liệu
+          // delete_category($idcg);//hàm xóa cứng xóa thằng vào database
         }
         $listcategory = loadall_category();
         include "list.php";

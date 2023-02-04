@@ -7,10 +7,7 @@ function insert_product($namep, $price ,$quantity, $hinh, $info,$idcg){
     pdo_execute($sql);
 }
 
-function delete_product($idp){
-    $sql="delete from product where idp=".$idp;
-    pdo_execute($sql);
-}
+
 
 // function loadall_product($keyw,$idcg){
 //     $sql="select * from product where 1";//where 1 tất là câu này nó đúng
@@ -98,6 +95,19 @@ function update_product($idp,$namep, $price ,$quantity ,$img, $info ,$idcg){
     pdo_execute($sql);
 }
 
+function tangluotxem($idp){
+ 
+    $sql="update product set view = view +1 where idp=".$idp;
+    pdo_execute($sql);
+}
+
+// hàm xóa cứng, xóa thẳng vào database
+function delete_product($idp){
+    $sql="delete from product where idp=".$idp;
+    pdo_execute($sql);
+}
+
+// hàm xóa mềm,không xóa thẳng vào database
 function remove_product($idp,$status){
     $sql="update product set status='".$status."' where idp=".$idp;
     pdo_execute($sql);

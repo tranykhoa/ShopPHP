@@ -184,34 +184,22 @@
 							</a>
 							<ul class="nav nav-treeview">
 								<li class="nav-item">
-									<a href="charts/chartjs.html" class="nav-link">
+									<a href="../thongke/index.php?action=listthongke" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
-										<p>ChartJS</p>
+										<p>Theo danh mục</p>
 									</a>
 								</li>
 								<li class="nav-item">
-									<a href="charts/flot.html" class="nav-link">
+									<a href="../thongke/index.php?action=bieudo" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
-										<p>Flot</p>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a href="charts/inline.html" class="nav-link">
-										<i class="far fa-circle nav-icon"></i>
-										<p>Inline</p>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a href="charts/uplot.html" class="nav-link">
-										<i class="far fa-circle nav-icon"></i>
-										<p>uPlot</p>
+										<p>Biểu đồ</p>
 									</a>
 								</li>
 							</ul>
 						</li>
 
 						<li class="nav-item">
-							<a href="index.php?action=logout" class="nav-link">
+							<a href="../login/index.php?action=logout" class="nav-link">
 							<i class="fas fa-door-open nav-icon"></i>
 								<p>
 									Thoát

@@ -16,6 +16,12 @@ function check_account_customer($email,$pass){
   return $tk;
 }
 
+function check_email_account_customer($email){
+  $sql = "select * from account_customer where email='".$email."'";
+  $tk = pdo_query_one($sql);
+  return $tk;
+}
+
 
 function update_taikhoan($fullname, $email,$password, $file_name,$phone,$idac){
   if(empty($file_name)){
@@ -26,6 +32,14 @@ function update_taikhoan($fullname, $email,$password, $file_name,$phone,$idac){
   pdo_execute($sql);
 }
 
+
+function update_password($password,$idac){
+
+  $sql="update account_customer set pass='".$password."' where idac=".$idac;
+  pdo_execute($sql);
+}
+
+
 function update_taikhoan_view($fullname, $email, $file_name,$phone,$idac){
   if(empty($file_name)){
     $sql="update account_customer set fullname='".$fullname."',email='".$email."', tel='".$phone."' where idac=".$idac;
@@ -35,9 +49,15 @@ function update_taikhoan_view($fullname, $email, $file_name,$phone,$idac){
   pdo_execute($sql);
 }
 
-// crud
+// hàm xóa cứng, xóa thẳng vào database
 function delete_account_customer($idac){
   $sql="delete from account_customer where idac=".$idac;
+  pdo_execute($sql);
+}
+
+// hàm xóa mềm, không xóa thằng vào database
+function remove_taikhoan($status,$idac){
+  $sql="update account_customer set status='".$status."' where idac=".$idac;
   pdo_execute($sql);
 }
 
@@ -58,10 +78,7 @@ function check_account_customer_new($email){
   return $tk;
 }
 
-function remove_taikhoan($status,$idac){
-  $sql="update account_customer set status='".$status."' where idac=".$idac;
-  pdo_execute($sql);
-}
+
 
 
 ?>

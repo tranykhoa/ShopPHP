@@ -4,8 +4,14 @@ function insert_category($tenloai){
     pdo_execute($sql);
 }
 
+// hàm xóa cứng, xóa thẳng vào database
 function delete_category($idcg){
     $sql="delete from category where idcg=".$idcg;
+    pdo_execute($sql);
+}
+// hàm xóa mềm, không xóa thẳng vào database
+function remove_category($idcg,$status){
+    $sql="update category set status='".$status."' where idcg=".$idcg;
     pdo_execute($sql);
 }
 
@@ -24,10 +30,7 @@ function update_category($idcg,$namecg){
     pdo_execute($sql);
 }
 
-function remove_category($idcg,$status){
-    $sql="update category set status='".$status."' where idcg=".$idcg;
-    pdo_execute($sql);
-}
+
 
 
 // function loadname_danhmuc($id){

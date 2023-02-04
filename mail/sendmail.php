@@ -11,7 +11,7 @@ use PHPMailer\PHPMailer\Exception;
 class Mailer{
     public function mailhoadon($gmail,$tieude,$noidung){
         $mail = new PHPMailer(true);
-        $mail -> charSet='UTF8 ';
+        $mail -> charSet='utf8';
     //print_r($mail);
 
         try {

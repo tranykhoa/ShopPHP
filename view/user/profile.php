@@ -28,7 +28,7 @@
                         <div>
                            <a href="index.php?action=updateuser"><input class="btn btn-primary py-2 px-4" name="signup" type="submit" value="Đổi Thông Tin"></input></a>
                            <a href="index.php?action=mybill"><input class="btn btn-primary py-2 px-4" name="signup" type="submit" value="Đơn Hàng Của Tôi"></input></a>
-                           <a href="index.php?action=mybill"><input class="btn btn-primary py-2 px-4" name="signup" type="submit" value="Đổi Mật Khẩu"></input></a>
+                           <a href="index.php?action=doimatkhau"><input class="btn btn-primary py-2 px-4" name="signup" type="submit" value="Đổi Mật Khẩu"></input></a>
                            <a href="index.php?action=logout"><input class="btn btn-primary py-2 px-4" name="signup" type="submit" value="Đăng xuất"></input></a>
                         </div>
                 </div>

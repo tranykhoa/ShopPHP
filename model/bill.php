@@ -2,7 +2,7 @@
 
 
 function loadall_bill(){
-  $sql="select * from bill order by idbill desc";
+  $sql="select * from bill order by status asc";
   $listbill = pdo_query($sql);
   return $listbill;
 }

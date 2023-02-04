@@ -22,7 +22,7 @@ function update_taikhoan_user($fullname, $email,$password, $file_name,$status,$t
 }
 
 
-// crud
+// hàm xóa cứng, xóa thẳng vào database
 function delete_user($id){
   $sql="delete from user where id=".$id;
   pdo_execute($sql);
